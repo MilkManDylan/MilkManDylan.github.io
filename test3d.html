@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Parallax Scrolling</title>
+    <style>
+        .container {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .model-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            transform-style: preserve-3d;
+        }
+
+        model-viewer {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="model-container">
+            <model-viewer src="model.obj" alt="3D Model" ar ar-modes="scene-viewer quick-look" camera-controls></model-viewer>
+        </div>
+    </div>
+    <script>
+        const modelContainer = document.querySelector('.model-container');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const rotation = scrollY / 2; // Adjust the divisor to control rotation speed
+
+            modelContainer.style.transform = `rotateY(${rotation}deg)`;
+        });
+    </script>
+</body>
+</html>
